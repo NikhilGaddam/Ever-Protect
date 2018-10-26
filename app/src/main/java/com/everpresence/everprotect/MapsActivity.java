@@ -1,8 +1,10 @@
 package com.everpresence.everprotect;
 
 import android.Manifest;
+import android.app.AlertDialog;
 import android.app.ProgressDialog;
 import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.graphics.Color;
@@ -61,6 +63,8 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
 
     public static final int MY_PERMISSIONS_REQUEST_LOCATION = 99;
     GoogleApiClient mGoogleApiClient;
+
+    AlertDialog.Builder builder;
     Location mLastLocation;
     Marker mCurrLocationMarker;
     LocationRequest mLocationRequest;
@@ -155,9 +159,7 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
                     kmlLayerD1.setOnFeatureClickListener(new KmlLayer.OnFeatureClickListener() {
                         @Override
                         public void onFeatureClick(Feature feature) {
-                            Toast.makeText(MapsActivity.this,
-                                    "Feature clicked: ",
-                                    Toast.LENGTH_SHORT).show();
+                            dialog();
                         }
                     });
 
@@ -214,9 +216,7 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
                     kmlLayerD1.setOnFeatureClickListener(new KmlLayer.OnFeatureClickListener() {
                         @Override
                         public void onFeatureClick(Feature feature) {
-                            Toast.makeText(MapsActivity.this,
-                                    "Feature clicked: ",
-                                    Toast.LENGTH_SHORT).show();
+                            dialog();
                         }
                     });
 
@@ -271,9 +271,7 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
                     kmlLayerD1.setOnFeatureClickListener(new KmlLayer.OnFeatureClickListener() {
                         @Override
                         public void onFeatureClick(Feature feature) {
-                            Toast.makeText(MapsActivity.this,
-                                    "Feature clicked: ",
-                                    Toast.LENGTH_SHORT).show();
+                            dialog();
                         }
                     });
 
@@ -327,9 +325,7 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
                     kmlLayerD1.setOnFeatureClickListener(new KmlLayer.OnFeatureClickListener() {
                         @Override
                         public void onFeatureClick(Feature feature) {
-                            Toast.makeText(MapsActivity.this,
-                                    "Feature clicked: ",
-                                    Toast.LENGTH_SHORT).show();
+                            dialog();
                         }
                     });
 
@@ -663,6 +659,27 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
     private void intent() {
         Intent i = new Intent(this, About.class);
         startActivity(i);
+    }
+    private void dialog(){
+        builder = new AlertDialog.Builder(this);
+        //Uncomment the below code to Set the message and title from the strings.xml file
+        builder .setTitle("The Flood Depth is :- ....");
+
+        //Setting message manually and performing action on button click
+        builder.setMessage("* Data will be Available once this Project is Realtime ")
+                .setCancelable(false)
+                .setPositiveButton("Ok", new DialogInterface.OnClickListener() {
+                    public void onClick(DialogInterface dialog, int id) {
+                        dialog.cancel();
+
+                    }
+                });
+
+        //Creating dialog box
+        AlertDialog alert = builder.create();
+        //Setting the title manually
+        alert.setTitle("The Flood Depth is :- ....");
+        alert.show();
     }
 
 }

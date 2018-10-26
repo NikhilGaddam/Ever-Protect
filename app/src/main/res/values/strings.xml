@@ -1,4 +1,5 @@
 <resources>
     <string name="app_name">Ever-Protect</string>
-    <string name="title_activity_maps">Map</string>
+    <string name="title_activity_maps">Ever-Protect</string>
+    <string name="link">https://github.com/NikhilGaddam/Ever-Protect/blob/master/README.md</string>
 </resources>
